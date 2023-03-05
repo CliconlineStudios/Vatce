@@ -1,12 +1,89 @@
+let ids = '';
+
+function ids1 () {
+    ids = 'servicios.html';
+    history.pushState(`Selected: ${ids}`, `./${ids}`);
+    pages = 'servicios.html.html';
+
+};
+
+function ids2 () {
+    ids = 'carrito.html';
+    history.pushState(`Selected: ${ids}`, `./${ids}`);
+    pages = 'carrito.html';
+
+};
+
+
+
+window.addEventListener('popstate', e => {
+    backweb();
+    
+});
+
+function backarriba(){
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+        });       
+};
+
+function backweb() {
+   
+    if (contador==1) {
+        document.getElementById("screen1").style.display = "block";
+        document.getElementById("inicio").style.display = "none";
+        document.getElementById("screen2").style.display = "none";
+        document.getElementById("screen3").style.display = "none";
+        document.getElementById("back").style.display = "none";
+        contador=0;
+        backarriba();
+        history.back();
+
+    }
+    else if(contador==2){
+        document.getElementById("screen2").style.display = "block";
+        document.getElementById("screen3").style.display = "none";
+        document.getElementById("screen4").style.display = "none";
+        contador=1;
+        backarriba();
+        ids1();
+
+    }
+    } 
+
+
+    function back() {
+
+        if (contador==1) {
+            document.getElementById("screen1").style.display = "block";
+            document.getElementById("inicio").style.display = "none";
+            document.getElementById("screen2").style.display = "none";
+            document.getElementById("screen3").style.display = "none";
+            contador=0;
+            backarriba();
+            history.back();
+    
+        }
+        else if(contador==2){
+            document.getElementById("screen2").style.display = "block";
+            document.getElementById("screen3").style.display = "none";
+            document.getElementById("screen4").style.display = "none";
+            contador=1;
+            backarriba();
+            ids1();
+    
+        }
+        }
 
 function inicio() {
     document.getElementById("screen1").style.display = "block";	
     document.getElementById("inicio").style.display = "none";
     document.getElementById("screen2").style.display = "none";
-    document.getElementById("back").style.display = "none";
     document.getElementById("screen3").style.display = "none";
     document.getElementById("screen4").style.display = "none";
     contador=0;
+    backweb();
 }
 
 
@@ -23,8 +100,8 @@ if (contador==0) {
     document.getElementById("screen1").style.display = "none";
     document.getElementById("inicio").style.display = "block";
     document.getElementById("screen2").style.display = "block";
-    document.getElementById("back").style.display = "block";
     contador=1;
+    ids1();
 }
 }
 
@@ -32,8 +109,8 @@ function screen3() {
     document.getElementById("screen3").style.display = "block";
     document.getElementById("screen2").style.display = "none";
     document.getElementById("screen1").style.display = "none";
-    document.getElementById("back").style.display = "block";
-    contador=2;   
+    contador=2;  
+    ids1(); 
     
 }
 
@@ -42,32 +119,14 @@ function screen4() {
     document.getElementById("screen2").style.display = "none";
     document.getElementById("screen3").style.display = "none";  
     document.getElementById("screen1").style.display = "none";
-    document.getElementById("back").style.display = "block";
-    contador=3;   
+    contador=2;
+    ids1();   
     
 }
 
 
 
-function back() {
 
-    if (contador==1) {
-        document.getElementById("screen1").style.display = "block";
-        document.getElementById("inicio").style.display = "none";
-        document.getElementById("screen2").style.display = "none";
-        document.getElementById("screen3").style.display = "none";
-        document.getElementById("back").style.display = "none";
-        contador=0;
-    }
-    else{
-        document.getElementById("screen2").style.display = "block";
-        document.getElementById("screen3").style.display = "none";
-        document.getElementById("screen4").style.display = "none";
-        contador=1;
-    }
-    
-    
-    }
 
     document.querySelector("#submit").addEventListener("click", e => {
         e.preventDefault();
@@ -113,5 +172,35 @@ function back() {
       
 
 
+      function save(){
+        let url = `https://drive.google.com/u/0/uc?id=1LHfeDI68_oEc-ifl6le1PPuZ9AtzOzFq&export=download`;
+        window.open(url); 
+       };
+
+      function saveuser() {
+        Swal.fire({
+            text: 'Centro de Entrenamiento Virtual Aéreo',
+            imageUrl: 'img/vatceok1.png',
+            imageWidth: 200,
+            confirmButtonText: 'Añadir a Contactos',
+            showCloseButton: 'true',
+            showCancelButton: true,
+      
+        
+          }).then((result) => {
+            if (result.isConfirmed) {
+              save();
+              Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'Descarga Correcta',
+                showConfirmButton: false,
+                timer: 1500
+              })
+            }
+          })
+    
+     
+    }; 
 
 
